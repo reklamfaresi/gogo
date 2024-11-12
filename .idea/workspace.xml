@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="431fe944-4432-488f-85c4-1b507f550f08" name="Changes" comment="yeni">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+    <list default="true" id="431fe944-4432-488f-85c4-1b507f550f08" name="Changes" comment="vera bismillah">
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="yeni" />
-    <option name="LAST_COMMIT_MESSAGE" value="yeni" />
+    <MESSAGE value="vera bismillah" />
+    <option name="LAST_COMMIT_MESSAGE" value="vera bismillah" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

@@ -6,17 +6,29 @@ import (
 )
 
 func main() {
+	// Veritabanı bağlantısını başlat
 	ConnectDatabase()
+
+	// Gin router oluştur
 	r := gin.Default()
 
 	// Login endpoint
-	r.POST("/login", func(c *gin.Context) {
-		// Burada login işlemleri yapılacak
-		c.JSON(http.StatusOK, gin.H{
-			"message": "Login endpoint'i burada!",
+	r.POST("/login", LoginHandler)
+
+	// Authenticated group
+	auth := r.Group("/")
+	auth.Use(AuthMiddleware())
+	{
+		// Ayarlar endpoint'i (örnek endpoint)
+		auth.GET("/settings", func(c *gin.Context) {
+			// Veritabanından ayarları getireceğiz (örnek veri)
+			c.JSON(http.StatusOK, gin.H{
+				"site_title":  "GoGo Admin Paneli",
+				"description": "Bu, admin panelinin genel ayarlarıdır.",
+			})
 		})
-	})
+	}
 
 	// Sunucuyu başlat
-	r.Run(":8080") // 8080 portunda çalıştır
+	r.Run(":8080")
 }
