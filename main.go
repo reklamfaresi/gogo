@@ -21,6 +21,8 @@ func main() {
 	{
 		// Ayarlar endpoint'i (örnek endpoint)
 		auth.GET("/settings", func(c *gin.Context) {
+			username := c.MustGet("username").(string)
+			RecordActivity(username, "Ayarları görüntüledi")
 			// Veritabanından ayarları getireceğiz (örnek veri)
 			c.JSON(http.StatusOK, gin.H{
 				"site_title":  "GoGo Admin Paneli",
