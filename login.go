@@ -21,7 +21,6 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	// Kullanıcı bilgilerini veritabanından kontrol et
 	var hashedPassword string
 	err := DB.QueryRow("SELECT password_hash FROM admins WHERE username = ?", credentials.Username).Scan(&hashedPassword)
 	if err != nil {
@@ -29,13 +28,11 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	// Şifre kontrolü
 	if err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(credentials.Password)); err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Geçersiz kullanıcı adı veya şifre"})
 		return
 	}
 
-	// JWT token oluştur
 	expirationTime := time.Now().Add(24 * time.Hour)
 	claims := &jwt.RegisteredClaims{
 		Subject:   credentials.Username,
@@ -48,5 +45,9 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
+	// Aktiviteyi kaydet
+	RecordActivity(credentials.Username, "Login oldu")
+
 	c.JSON(http.StatusOK, gin.H{"token": tokenString})
+
 }
